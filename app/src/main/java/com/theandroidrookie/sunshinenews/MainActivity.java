@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
     /** Initial Query */
     private static final String API_INITIAL_QUERY = "https://content.guardianapis.com/search?";
-    private static final String KEY_CONTRIBUTOR = "https://content.guardianapis.com/search?q=" +
-            "android&show-tags=contributor&order-by=relevance&api-key=test";
 
     /** Adapter for the List */
     private static NewsAdapter newsAdapter;
