@@ -35,6 +35,7 @@ public class QueryUtils {
     private static final String KEY_DATE = "webPublicationDate";
     private static final String KEY_TITLE = "webTitle";
     private static final String KEY_WEB_URL = "webUrl";
+    private final static String KEY_TAGS = "tags";
 
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
@@ -189,6 +190,9 @@ public class QueryUtils {
             String publicationDate;
             String title;
             String webUrl;
+            String author = null;
+            JSONArray tagsArray;                    // Array of tags
+            JSONObject newsTag;                     // JSON Object for news tags - first element in tagsArray
 
             for (int i = 0; i < newsResults.length(); i++ ) {
                 JSONObject newsArticle = newsResults.getJSONObject(i);
@@ -196,6 +200,20 @@ public class QueryUtils {
                 if (newsArticle.has(KEY_SECTION)) {
                     section = newsArticle.getString(KEY_SECTION);
                 } else section = null;
+
+                if (newsArticle.has(KEY_TAGS)) {
+                    tagsArray = newsArticle.getJSONArray(KEY_TAGS);
+                    // newsTags = tagsArray.getJSONObject(0);
+
+                    if (tagsArray.length() > 0) {
+                        for (int j = 0; j < 1; j++) {
+                            newsTag = tagsArray.getJSONObject(j);
+                            if (newsTag.has(KEY_TITLE)) {
+                                author = newsTag.getString(KEY_TITLE);
+                            }
+                        }
+                    }
+                }
 
                 // Check if a webPublicationDate exists
                 if (newsArticle.has(KEY_DATE)) {
@@ -213,7 +231,7 @@ public class QueryUtils {
                 } else webUrl = null;
 
                 // Create the NewsItem object and add it to the newsItems List.
-                NewsItem newsItem = new NewsItem(title, section, webUrl, publicationDate);
+                NewsItem newsItem = new NewsItem(title, section, webUrl, publicationDate, author);
                 newsItems.add(newsItem);
             }
 

@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     /** Loader for background thread */
     private static LoaderManager loaderManager;
 
-    /** Initial Query which will be combined with the user's input */
+    /** Initial Query */
     private static final String API_INITIAL_QUERY = "https://content.guardianapis.com/search?";
+    private static final String KEY_CONTRIBUTOR = "https://content.guardianapis.com/search?q=" +
+            "android&show-tags=contributor&order-by=relevance&api-key=test";
 
     /** Adapter for the List */
     private static NewsAdapter newsAdapter;
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
         // Get order by preference
         String orderBy = sharedPreferences.getString(getString(R.string
-                .settings_order_by_list_key), getString(R.string.settings_order_by_list_default));
+                .settings_order_by_list_key), getString(R.string.
+                settings_order_by_list_default));
 
         // Build the Uri based on the preferences
         Uri baseIri = Uri.parse(API_INITIAL_QUERY);
