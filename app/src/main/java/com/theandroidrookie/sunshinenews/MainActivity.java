@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     private static LoaderManager loaderManager;
 
     /** Initial Query */
-    private static final String API_INITIAL_QUERY = "https://content.guardianapis.com/search?";
+    private static final String API_INITIAL_QUERY = "https://content.guardianapis.com/search?show-tags=contributor";
 
     /** Adapter for the List */
     private static NewsAdapter newsAdapter;

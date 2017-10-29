@@ -32,7 +32,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // The ViewHolder holds a variable for every View that will be used
-        public TextView newsAuthor;
+        public TextView newsContributor;
         public TextView newsTitle;
         public TextView newsSection;
         public TextView newsPublicationDate;
@@ -52,7 +52,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             // Attach a click listener to the entire row view
             itemView.setOnClickListener(this);
 
-            newsAuthor = (TextView) itemView.findViewById(R.id.author);
+            newsContributor = (TextView) itemView.findViewById(R.id.author);
             newsTitle = (TextView) itemView.findViewById(R.id.news_title);
             newsSection = (TextView) itemView.findViewById(R.id.news_section);
             newsPublicationDate = (TextView) itemView.findViewById(R.id.news_publication_date);
@@ -110,13 +110,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         NewsItem newsItem = mNews.get(position);
 
         // Set item views based on views and data model
-        TextView newsAuthorTextView = viewHolder.newsAuthor;
+        TextView newsContributorTextView = viewHolder.newsContributor;
         TextView newsTitleTextView = viewHolder.newsTitle;
         TextView newsSectionTextView = viewHolder.newsSection;
         TextView newsPublicationDateTextView = viewHolder.newsPublicationDate;
         TextView newsPublicationTimeTextView = viewHolder.newsPublicationTime;
 
-        newsAuthorTextView.setText(newsItem.getAuthor());
+        newsContributorTextView.setText(newsItem.getContributor());
         newsTitleTextView.setText(newsItem.getTitle());
         newsSectionTextView.setText(newsItem.getSectionName());
         newsPublicationDateTextView.setText(convertDateFormat(newsItem.getPublicationDate()));

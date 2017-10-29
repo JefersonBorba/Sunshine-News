@@ -33,9 +33,9 @@ public class QueryUtils {
     private static final String KEY_RESULTS = "results";
     private static final String KEY_SECTION = "sectionName";
     private static final String KEY_DATE = "webPublicationDate";
-    private static final String KEY_TITLE = "webTitle"; // same key used for news title and author name
+    private static final String KEY_TITLE = "webTitle";
     private static final String KEY_WEB_URL = "webUrl";
-    private final static String KEY_TAGS = "tags";
+    private static final String API_KEY_TAGS = "tags";
 
     /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
@@ -185,12 +185,13 @@ public class QueryUtils {
             JSONObject responseJSONObject = baseJSONObject.getJSONObject(KEY_RESPONSE);
             JSONArray newsResults = responseJSONObject.getJSONArray(KEY_RESULTS);
 
+
             // Variables for JSON parsing
             String section;
             String publicationDate;
             String title;
             String webUrl;
-            String author = "";
+            String contributor ="";
             JSONArray tagsArray;
             JSONObject newsTag;
 
@@ -216,23 +217,22 @@ public class QueryUtils {
                     webUrl = newsArticle.getString(KEY_WEB_URL);
                 } else webUrl = null;
 
-                // Check if Authors is available
-                if (newsArticle.has(KEY_TAGS)) {
-                    tagsArray = newsArticle.getJSONArray(KEY_TAGS);
+                if (newsArticle.has(API_KEY_TAGS)) {
+                    tagsArray = newsArticle.getJSONArray(API_KEY_TAGS);
                     // newsTags = tagsArray.getJSONObject(0);
 
                     if (tagsArray.length() > 0) {
                         for (int j = 0; j < 1; j++) {
                             newsTag = tagsArray.getJSONObject(j);
                             if (newsTag.has(KEY_TITLE)) {
-                                author = newsTag.getString(KEY_TITLE);
+                                contributor = newsTag.getString(KEY_TITLE);
                             }
                         }
                     }
                 }
 
                 // Create the NewsItem object and add it to the newsItems List.
-                NewsItem newsItem = new NewsItem(title, section, webUrl, publicationDate, author);
+                NewsItem newsItem = new NewsItem(title, section, webUrl, publicationDate, contributor);
                 newsItems.add(newsItem);
             }
 

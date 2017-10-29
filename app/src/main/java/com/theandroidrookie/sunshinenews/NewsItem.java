@@ -15,7 +15,7 @@ public class NewsItem {
     private String mPublicationDate;
 
     /** Contributor of the article */
-    private String mAuthor;
+    private String mContributor;
 
     /**
      * Create a new NewsItem object
@@ -23,14 +23,14 @@ public class NewsItem {
      * @param sectionName is the section the article belongs to
      * @param webURL is the article's webpage Url
      * @param publicationDate is the article's publication date
-     * @param author is the author name
+     * @param contributor is the author name
      */
-    public NewsItem(String title, String sectionName, String webURL, String publicationDate, String author) {
+    public NewsItem(String title, String sectionName, String webURL, String publicationDate, String contributor) {
         mTitle = title;
         mSectionName = sectionName;
         mWebURL = webURL;
         mPublicationDate = publicationDate;
-        mAuthor = author;
+        mContributor = contributor;
     }
 
     public String getTitle() {
@@ -48,7 +48,7 @@ public class NewsItem {
     public String getPublicationDate() {
         return mPublicationDate;
     }
-    public String getAuthor() {
-        return mAuthor;
+    public String getContributor() {
+        return mContributor;
     }
 }
